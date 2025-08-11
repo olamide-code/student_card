@@ -1,0 +1,1 @@
+This is a student report card, that gives detials of each student, we have a total of three student(john, mary and Grace). I calculated they average score each and determine the student with the highest score. I imported math functiona and numpy at some point to complete the project
