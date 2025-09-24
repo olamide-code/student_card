@@ -1,53 +1,56 @@
-#COMBINING LIST & DICTIONARIES
-#STUDENT REPORT CARD
-import math
-import numpy
-students = [
-    {"name":"john", "scores": [85,90,78]},
-    {"name":"Mary", "scores": [92,88,95]},
-    {"name":"Grace","scores": [70,75,80]}
+#LIBRARY BORROW SYSTEM
+print("Library Borrow System")
+print("**********************")
+store_book = {}
+import string
+running = True
+while running:
+    user_input = input("'stop' to quit Enter to continue: ")
+    if user_input.lower() == "stop":
+        print("Goodbye 🙋‍♂️🙋‍♂️")
+        break
 
-]
+    print("What would you like to do?")
+    print("**************************")
+    print("1. Store book")
+    print("2. Borrow book")
+    print("3. Return Books")
+    print("4. show all Books")
 
-students_0 = students[0] #position of the first element in the list
-student_average = students_0["scores"]
-student_name_0 = students_0["name"]
-lenght = len(student_average)
-sum = sum(student_average)
-Average_0 = sum / lenght
-print(f"{student_name_0}:  Average = {Average_0: .2f}")
+    user_option = input("Enter your choice: ")
+    if user_option == "1":
+        title = input("Enter book title: ").capitalize()
+        num_copies = int(input("How many copies would you like to add? "))
+        store_book[title] = num_copies
+        print(f"✅✅ you have stored: {title} having {num_copies} copies")
+        print("**************************")
 
+    if user_option == "2":
+        title = input("Enter book title: ").capitalize()
+        if title in store_book:
+            Quantity = int(input("How many copies would you like to borrow? "))
+            remaining  = store_book[title] - Quantity
+            print(f"you have borrowed: {Quantity} copies,remaining copies is {remaining} ")
+            print("**************************")
+        else:
+            print("❌❌ Sorry, no such book exists")
 
+    if user_option == "3":
+        title = input("Enter book title: ").capitalize()
+        if title in store_book:
+            Quantity1 = int(input("How many copies would you like to return? "))
+            new_quantity = store_book[title] + Quantity1
+            print(f"you have returned: {Quantity1} copies of {title} having {new_quantity} copies")
+            print("**************************")
 
-students_1 = students[1] #position of the first element in the list
-student_scores = students_1["scores"]
-lenght_1 = len(student_scores)
-student_name_1 = students_1["name"]
-total = numpy.sum(student_scores)
-Average_1 = total/lenght_1
-print(f"{student_name_1}:  Average = {Average_1: .2f}")
+        else:
+            print("❌❌ <UNK> Sorry, no such book exists")
 
-
-student_2 = students[2]
-student_scores_2 = student_2["scores"]
-student_name_2 = student_2["name"]
-lenght_2 = len(student_scores_2)
-total_2 = numpy.sum(student_scores_2)
-Average_2 = total_2 / lenght_2
-print(f"{student_name_2}: Average = {Average_2: .2f}")
-
-
-if Average_0 > Average_1 and Average_2:
-    print(f"Top student: {student_name_0} with average: {Average_0: .2f}")
-
-elif Average_1 > Average_0 and Average_2:
-    print(f"Top student: {student_name_1} with average {Average_1: .2f}")
-
-
-elif Average_2 > Average_0 and Average_1:
-    print(f"Top student: {student_name_2} with average {Average_2}")
-
-else:
-    print(f"All student scored the same")
-
-
+    elif user_option == "4":
+        if not store_book:
+            print("<UNK> No book exists")
+        else:
+            print("All the books in the Library")
+            print("*****************************")
+            for title, num_copies in store_book.items():
+                print(f"{title}: {num_copies} copies")
